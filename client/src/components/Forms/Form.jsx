@@ -104,7 +104,10 @@ const Form = () => {
           type="submit"
           size="small"
           fullWidth
-          onClick={() => resetForm()}
+          onClick={(e) => (
+            e.preventDefault(),
+            resetForm()
+          )}
         >
           Clear
         </Button>
