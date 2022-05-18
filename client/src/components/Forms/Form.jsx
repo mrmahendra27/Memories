@@ -28,10 +28,10 @@ const Form = ({ currentId, setCurrentId }) => {
       dispatch(createPost(postData));
     }
 
-    resetForm();
+    clear();
   };
 
-  const resetForm = () => {
+  const clear = () => {
     setCurrentId(null)
     setPostData({
       creator: "",
@@ -54,7 +54,7 @@ const Form = ({ currentId, setCurrentId }) => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">{currentId ? "Edit Post" : "Create Post"}</Typography>
+        <Typography variant="h6">{currentId ? "Editing a Post" : "Creating a Post"}</Typography>
         <TextField
           variant="outlined"
           name="creator"
@@ -116,7 +116,7 @@ const Form = ({ currentId, setCurrentId }) => {
           type="submit"
           size="small"
           fullWidth
-          onClick={(e) => (e.preventDefault(), resetForm())}
+          onClick={(e) => (e.preventDefault(), clear())}
         >
           Clear
         </Button>
