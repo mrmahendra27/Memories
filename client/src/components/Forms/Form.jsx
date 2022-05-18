@@ -6,7 +6,7 @@ import useStyles from "./styles";
 import { createPost } from "../../actions/posts";
 import { useDispatch } from "react-redux";
 
-const Form = () => {
+const Form = ({ currentId, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -20,8 +20,14 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createPost(postData));
-    resetForm()
+
+    if (currentId) {
+      dispatch(updatePost(currentId, postData));
+    } else {
+      dispatch(createPost(postData));
+    }
+    
+    resetForm();
   };
 
   const resetForm = () => {
@@ -32,7 +38,7 @@ const Form = () => {
       tags: "",
       selectedFile: "",
     });
-  }
+  };
 
   return (
     <Paper className={classes.paper}>
@@ -104,10 +110,7 @@ const Form = () => {
           type="submit"
           size="small"
           fullWidth
-          onClick={(e) => (
-            e.preventDefault(),
-            resetForm()
-          )}
+          onClick={(e) => (e.preventDefault(), resetForm())}
         >
           Clear
         </Button>

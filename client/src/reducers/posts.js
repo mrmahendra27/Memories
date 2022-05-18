@@ -4,9 +4,11 @@ const reducer = (posts = [], action) => {
       return action.payload;
     case "CREATE":
       return [...posts, action.payload];
+    case "UPDATE":
+      return [...posts, action.payload];
     default:
       return posts;
   }
 };
 
-export default reducer
+export default reducer;
