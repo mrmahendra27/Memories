@@ -21,8 +21,18 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createPost(postData));
-    setPostData({})
+    resetForm()
   };
+
+  const resetForm = () => {
+    setPostData({
+      creator: "",
+      title: "",
+      message: "",
+      tags: "",
+      selectedFile: "",
+    });
+  }
 
   return (
     <Paper className={classes.paper}>
@@ -94,7 +104,7 @@ const Form = () => {
           type="submit"
           size="small"
           fullWidth
-          onClick={() => setPostData({})}
+          onClick={() => resetForm()}
         >
           Clear
         </Button>
